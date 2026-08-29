@@ -1,19 +1,19 @@
 export let cart = [{
   productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
   quantity: 2,
-  deliveryOptions: '1'
+  deliveryOptionId: '1' // using id from delivery options , 33
 },{
   productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
   quantity: 1,
-  deliveryOptions: '2'
+  deliveryOptionId: '2' // using id from delivery options
 }];
 
 export function addToCart(productId) {
   let matchingItem;
-
-      cart.forEach((item)=>{
-        if(productId === item.productId){
-          matchingItem =item;
+//takes products and finds the matching product in the cart
+      cart.forEach((cartItem)=>{
+        if(productId === cartItem.productId){
+          matchingItem = cartItem;
         }
       });
 
@@ -23,7 +23,7 @@ export function addToCart(productId) {
           cart.push({
           productId: productId,
           quantity: 1,
-          deliveryOptions: '1'
+          deliveryOptions: '1' // using id from deliveryOption.js
         });
       }
 }
@@ -34,19 +34,21 @@ export function removeFromCart(productId){
     if(cartItem.productId != productId){
       newCart.push(cartItem);
     }
-    cart = newCart;
+   
   });
-  
+   cart = newCart;
 }
-
+//Make it interactive
 export function updateDeliveryOption(productId,deliveryOptionId) {
   let matchingItem;
+//loop through the cart, 133
+//takes products and finds the matching product in the cart and save in variable
+//give cart item that matches this product and save in the variable
+      cart.forEach((cartItem)=>{
+        if(productId === cartItem.productId){
+          matchingItem = cartItem;
+        }
+      });
 
-  cart.forEach((item)=>{
-    if(productId === item.productId){
-      matchingItem =item;
-    }
-  });
-
-  matchingItem.deliveryOptionId = deliveryOptionId;
+  matchingItem.deliveryOptionId = deliveryOptionId;//updating delivery option id,144
 }
